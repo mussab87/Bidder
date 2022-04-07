@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Bidder.Data.Entities.Student>
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="widget-content widget-content-area col-12">
+    <p>
+        <a asp-action="Create" class="btn btn-success">@_shardLocalizer.GetLocalizedString("BtnCreate")</a>
+        <a asp-action="GenerateGroups" class="btn btn-success">توزيع</a>
+    </p>
+    <hr />
+    <div class="table-responsive mb-4 mt-4">
+        <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        <p>رقم التسجيل</p>
+                    </th>
+                    <th>
+                        <p>إسم المتقدم</p>
+                    </th>
+                    <th>
+                        <p>الهوية الوطنية</p>
+                    </th>
+                    <th>
+                        <p>الوزن</p>
+                    </th>
+                    <th>
+                        <p>الطول</p>
+                    </th>
+                    <th>
+                        <p>مستوى الفحص الطبي</p>
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CandidatName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Weight)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Length)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MedicalTestLevel)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

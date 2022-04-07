@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+<li class="nav-item dropdown message-dropdown" style="cursor:pointer">
+    <a onclick="SetLanguage('ar-SA')" class="nav-link">
+        <img src="~/app_files/sa.png" style="width: 30px;"/>
+    </a>
+</li>
+
+<li class="nav-item dropdown message-dropdown"  style="cursor:pointer">
+    <a onclick="SetLanguage('en-US')" class="nav-link">
+        <img src="~/app_files/en.png" style="width: 30px;" />
+    </a>
+</li>
+
+<script type="text/javascript">
+    
+    function SetLanguage(culture) {
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "/Common/SetLanguage",
+            data: { culture: culture, returnUrl:'@Context.Request.Path'},
+            dataType: "json",
+            success: function (returnUrl) {
+                console.log(returnUrl);
+                location.href = returnUrl;
+            },
+            error: function(req, status, error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

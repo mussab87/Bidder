@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Bidder.Data.Entities.Role>
+
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+<div class="widget-content widget-content-area br-6">
+    <a asp-action="Create" class="btn btn-success">@_shardLocalizer.GetLocalizedString("BtnCreate")</a>
+    <hr/>
+    <div class="table-responsive mb-4 mt-4">
+        <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
+            <thead>
+            <tr>
+                <th>
+                    @_shardLocalizer.GetLocalizedString("RolenameinArabic")
+                </th>
+                <th>
+                    @_shardLocalizer.GetLocalizedString("RolenameinEnglish")
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameAr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameEn)
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a href=@Url.Action("Edit", "Role", new {id = item.Id}) class="btn btn-secondary btn-sm  mb-1">
+                                    @_shardLocalizer.GetLocalizedString("EditPremission")
+                                </a>
+
+                                <a href=@Url.Action("Delete", "Role", new {id = item.Id}) class="btn btn-secondary btn-sm ">
+                                    @_shardLocalizer.GetLocalizedString("DeleteRole")
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a  href=@Url.Action("addRole", "Role", new {id = item.Id})  class="btn btn-secondary btn-sm mb-1">
+                                    @_shardLocalizer.GetLocalizedString("AddUser")
+                                </a>
+
+                                <a href=@Url.Action("AddPermission", "permissions", new {id = item.Id}) nnnnnnmnm   class="btn btn-secondary btn-sm">
+                                    @_shardLocalizer.GetLocalizedString("CreatePremission")
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        });
+    </script>
+
+}

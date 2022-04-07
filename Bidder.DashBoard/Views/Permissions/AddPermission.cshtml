@@ -1,0 +1,177 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@using Bidder.DashBoard.Helpers
+@using Bidder.Data.HelpersAttributes
+@model Bidder.DashBoard.ViewModels.RoleAccountViewModel
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewBag.Title = "إضافة صلاحية";
+}
+<div class="widget-content widget-content-area col-12">
+    <h4> @_shardLocalizer.GetLocalizedString("ManagePermission")</h4>
+    <hr />
+    @{
+        var lang = Convert.ToString(HttpContextAccessor.HttpContext.Request.Cookies["lang"]);
+        if (lang == "ar-SA")
+        {
+            <ul class="text-muted" style="list-style: none">
+                <li style="text-align: center">@*@_shardLocalizer.GetLocalizedString("Name") :*@ <strong style="color: red">@Model.Roles.NameAr</strong></li>
+            </ul>
+        }
+        else
+        {
+            <ul class="text-muted" style="list-style: none">
+                <li style="text-align: center">@*@_shardLocalizer.GetLocalizedString("Name") :*@ <strong style="color: red">@Model.Roles.NameEn</strong></li>
+            </ul>
+        }
+    }
+
+    <hr />
+    @using (Html.BeginForm("SaveRolePermission", "Permissions"))
+    {
+        @Html.HiddenFor(m => m.RoleId)
+        <div class="card mb-2">
+            <div class="card-header">
+                <h4>@_shardLocalizer.GetLocalizedString("RemovePermission")</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <a class="btn btn-primary btn-sm mb-2 btn-block" id="selectAllRemovePermission">@_shardLocalizer.GetLocalizedString("SelectAll")</a>
+                    </div>
+                </div>
+                <div class="table-responsive mb-4 mt-4">
+
+                    <table class="table table-hover non-hover" id="removePermission" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>@_shardLocalizer.GetLocalizedString("EnglishName")</th>
+                                <th>@_shardLocalizer.GetLocalizedString("ArabicName")</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var per in Model.GetPermissions)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="permissionIds" id="PermissionIds_@per.Id" value="@per.Id" checked />
+                                    </td>
+                                    <td>
+                                        @per.NameEn
+                                    </td>
+                                    <td>
+                                        @per.NameAr
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-2">
+            <div class="card-header">
+                <h4>@_shardLocalizer.GetLocalizedString("AddPermissionToRole")</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <a class="btn btn-primary btn-sm mb-2 btn-block" id="selectAllAddPermissionToRole">@_shardLocalizer.GetLocalizedString("SelectAll")</a>
+                    </div>
+                </div>
+                <div class="table-responsive mb-4 mt-4">
+  
+                    <table class="table table-hover non-hover" id="addPermissionToRole" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>@_shardLocalizer.GetLocalizedString("EnglishName")</th>
+                                <th>@_shardLocalizer.GetLocalizedString("ArabicName")</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var noR in Model.noGetPermissions)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="permissionIds" id="PermissionIds_@noR.Id" value="@noR.Id" />
+                                    </td>
+                                    <td>
+                                        @noR.NameEn
+                                    </td>
+                                    <td>
+                                        @noR.NameAr
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @Html.AntiForgeryToken()
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-success">@_shardLocalizer.GetLocalizedString("BtnSave")</button>
+            <a asp-controller="Role" asp-action="Index" class="btn btn-primary"> @_shardLocalizer.GetLocalizedString("BtnBack") </a>
+        </div>
+    }
+</div>
+
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#selectAllRemovePermission').click(function () {
+                var checkboxes = document.getElementsByTagName('input');
+                if ($(this).hasClass('allChecked')) {
+                    //for (var i = 0; i < checkboxes.length; i++) {
+                    //    if (checkboxes[i].type == 'checkbox') {
+                    //        checkboxes[i].checked = false;
+                    //    }
+                    //}
+                } else {
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].type == 'checkbox') {
+                            checkboxes[i].checked = true;
+                        }
+                    }
+                }
+                $(this).toggleClass('allChecked');
+            });
+
+
+            $('#selectAllAddPermissionToRole').click(function () {
+                var checkboxes = document.getElementsByTagName('input');
+                if ($(this).hasClass('allChecked')) {
+                    //for (var i = 0; i < checkboxes.length; i++) {
+                    //    if (checkboxes[i].type == 'checkbox') {
+                    //        checkboxes[i].checked = false;
+                    //    }
+                    //}
+                } else {
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        if (checkboxes[i].type == 'checkbox') {
+                            checkboxes[i].checked = true;
+                        }
+                    }
+                }
+                $(this).toggleClass('allChecked');
+            });
+
+        });
+    </script>
+
+}

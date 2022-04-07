@@ -1,0 +1,17 @@
+D:\Projects\Bidder\SupUp.Data\bin\Debug\netcoreapp3.1\Bidder.Data.deps.json
+D:\Projects\Bidder\SupUp.Data\bin\Debug\netcoreapp3.1\Bidder.Data.dll
+D:\Projects\Bidder\SupUp.Data\bin\Debug\netcoreapp3.1\Bidder.Data.pdb
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.AssemblyInfoInputs.cache
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.AssemblyInfo.cs
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.csproj.CoreCompileInputs.cache
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.dll
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.pdb
+D:\Projects\Bidder\SupUp.Data\obj\Debug\netcoreapp3.1\Bidder.Data.csprojAssemblyReference.cache
+D:\Projects\Bidder\Bidder.Data\bin\Debug\netcoreapp3.1\Bidder.Data.deps.json
+D:\Projects\Bidder\Bidder.Data\bin\Debug\netcoreapp3.1\Bidder.Data.dll
+D:\Projects\Bidder\Bidder.Data\bin\Debug\netcoreapp3.1\Bidder.Data.pdb
+D:\Projects\Bidder\Bidder.Data\obj\Debug\netcoreapp3.1\Bidder.Data.AssemblyInfoInputs.cache
+D:\Projects\Bidder\Bidder.Data\obj\Debug\netcoreapp3.1\Bidder.Data.AssemblyInfo.cs
+D:\Projects\Bidder\Bidder.Data\obj\Debug\netcoreapp3.1\Bidder.Data.csproj.CoreCompileInputs.cache
+D:\Projects\Bidder\Bidder.Data\obj\Debug\netcoreapp3.1\Bidder.Data.dll
+D:\Projects\Bidder\Bidder.Data\obj\Debug\netcoreapp3.1\Bidder.Data.pdb

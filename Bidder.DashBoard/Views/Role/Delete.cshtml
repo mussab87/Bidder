@@ -1,0 +1,38 @@
+﻿@model Bidder.Data.Entities.Role
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="widget-content widget-content-area col-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h4 class="font-weight-bolder">
+                    @_shardLocalizer.GetLocalizedString("DeleteRole")
+                </h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="form-group col-12 col-lg-12 col-md-12">
+                    <label> @_shardLocalizer.GetLocalizedString("ArabicName") :</label>
+                    <label class="text-muted"> @Html.DisplayFor(model => model.NameAr)</label>
+                </div>
+                <div class="form-group col-12 col-lg-12 col-md-12">
+                    <label> @_shardLocalizer.GetLocalizedString("EnglishName") :</label>
+                    <label class="text-muted"> @Html.DisplayFor(model => model.NameEn)</label>
+                </div>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id"/>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-danger"> @_shardLocalizer.GetLocalizedString("BtnDelete")</button>
+                    <a asp-action="Index" class="btn btn-warning"> @_shardLocalizer.GetLocalizedString("BtnBack") </a>
+                </div>
+            </form>
+            <br/>
+
+        </div>
+    </div>
+</div>
+</div>

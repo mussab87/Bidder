@@ -1,0 +1,408 @@
+﻿@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - @_shardLocalizer.GetLocalizedString("SystemName")</title>
+    <link rel="icon" type="image/x-icon" href="~/rtl/assets/img/favicon.ico" />
+    <link href="~/rtl/assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="~/rtl/assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="~/rtl/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/rtl/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/rtl/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="~/rtl/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="~/rtl/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    <!-- datatable css-->
+    <link rel="stylesheet" type="text/css" href="~/rtl/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/rtl/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="~/rtl/plugins/table/datatable/dt-global_style.css">
+    <!--fontawesome-->
+    <link href="~/rtl/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/rtl/plugins/font-icons/fontawesome/css/regular.css">
+    <link rel="stylesheet" href="~/rtl/plugins/font-icons/fontawesome/css/fontawesome.css">
+    <link href="~/rtl/plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" />
+    <link href="~/rtl/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/rtl/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/rtl/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/rtl/assets/css/components/custom-modal.css" rel="stylesheet" type="text/css" />
+    <link href="~/rtl/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+    <link href="~/rtl/plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/rtl/plugins/editors/markdown/simplemde.min.css">
+    <link href="~/rtl/assets/css/apps/invoice.css" rel="stylesheet" type="text/css" />
+    <link href="~/style.css" rel="stylesheet" type="text/css">
+
+
+
+
+    <!-- END PAGE LEVEL CUSTOM STYLES -->
+
+</head>
+<body>
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!--  END LOADER -->
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container fixed-top">
+        <header class="header navbar navbar-expand-sm">
+            <ul class="navbar-item flex-row">
+                <li class="nav-item align-self-center page-heading">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <a href="~/">
+                                <img src="~/app_files/logo-sm.png" class="img img-responsive mt-20" style="width: 100px;margin-top:50px" />
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></a>
+
+            <ul class="navbar-item flex-row search-ul">
+                <li class="nav-item align-self-center search-animated">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search toggle-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <form class="form-inline search-full form-inline search" role="search">
+                        <div class="search-bar">
+                            <input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="ابحث هنا......">
+                        </div>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row navbar-dropdown">
+                @await Html.PartialAsync("_SelectLanguagePartial")
+
+
+                <li class="nav-item dropdown message-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="messageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-Message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><span class="badge badge-primary"></span>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="MessageDropdown">
+                        <div class="">
+                            <a class="dropdown-item">
+                                <div class="">
+
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <div class="avatar avatar-xl">
+                                                <span class="avatar-title rounded-circle">KY</span>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">Kara Young</h5>
+                                                <p class="msg-title">ACCOUNT UPDATE</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="">
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <div class="avatar avatar-xl">
+                                                <span class="avatar-title rounded-circle">DA</span>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">Daisy Anderson</h5>
+                                                <p class="msg-title">ACCOUNT UPDATE</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item">
+                                <div class="">
+
+                                    <div class="media">
+                                        <div class="user-img">
+                                            <div class="avatar avatar-xl">
+                                                <span class="avatar-title rounded-circle">OG</span>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="">
+                                                <h5 class="usr-name">Oscar Garner</h5>
+                                                <p class="msg-title">ACCOUNT UPDATE</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown notification-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg><span class="badge badge-success"></span>
+                    </a>
+                    <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="notificationDropdown">
+                        <div class="notification-scroll">
+
+                            <div class="dropdown-item">
+                                <div class="media server-log">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6" y2="6"></line><line x1="6" y1="18" x2="6" y2="18"></line></svg>
+                                    <div class="media-body">
+                                        <div class="data-info">
+                                            <h6 class="">Server Rebooted</h6>
+                                            <p class="">45 min ago</p>
+                                        </div>
+
+                                        <div class="icon-status">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-item">
+                                <div class="media ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                    <div class="media-body">
+                                        <div class="data-info">
+                                            <h6 class="">Licence Expiring Soon</h6>
+                                            <p class="">8 hrs ago</p>
+                                        </div>
+
+                                        <div class="icon-status">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-item">
+                                <div class="media file-upload">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                    <div class="media-body">
+                                        <div class="data-info">
+                                            <h6 class="">Kelly Portfolio.pdf</h6>
+                                            <p class="">670 kb</p>
+                                        </div>
+
+                                        <div class="icon-status">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                @await Html.PartialAsync("UserProfilePartial")
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+    <!--  BEGIN NAVBAR  -->
+    <div class="sub-header-container">
+        <header class="header navbar navbar-expand-sm">
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+
+            <ul class="navbar-nav flex-row">
+                <li>
+                    <div class="page-header">
+
+                        <nav class="breadcrumb-one" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><span>@ViewData["Title"]</span></li>
+                            </ol>
+                        </nav>
+
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav flex-row ml-auto ">
+                <li class="nav-item more-dropdown">
+                    <div class="dropdown  custom-dropdown-icon">
+                        <a class="dropdown-toggle btn" href="#" role="button" id="customDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>@_shardLocalizer.GetLocalizedString("Reception")</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="customDropdown">
+                            <a class="dropdown-item" onclick="ChangeColor(1)" data-value="@_shardLocalizer.GetLocalizedString("Reception")" href="javascript:void(0);">@_shardLocalizer.GetLocalizedString("Reception")</a>
+                            <a class="dropdown-item" onclick="ChangeColor(2)" data-value="@_shardLocalizer.GetLocalizedString("Delivery")" href="javascript:void(0);">@_shardLocalizer.GetLocalizedString("Delivery")</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        @await Html.PartialAsync("_SideBar")
+        <!--  END SIDEBAR  -->
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            <div class="layout-px-spacing">
+                <div class="row layout-top-spacing" id="cancel-row">
+
+                    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+
+                        @RenderBody()
+                    </div>
+
+                </div>
+                <div class="footer-wrapper" style="text-align:center">
+                    <div class="footer-section f-section-1">
+                        <p class="">Copyright © 2021 <a target="_blank" href="~/home">Rslf</a>, All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            <!--  END CONTENT AREA  -->
+
+        </div>
+    </div>
+    <!-- END MAIN CONTAINER -->
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/rtl/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="~/ltr/assets/js/libs/jquery-ui.js"></script>
+    <script src="~/ltr/assets/js/libs/jquery.validate.min.js"></script>
+    <script src="~/rtl/bootstrap/js/popper.min.js"></script>
+    <script src="~/rtl/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/rtl/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/rtl/assets/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="~/rtl/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="~/rtl/plugins/apex/apexcharts.min.js"></script>
+    <script src="~/rtl/assets/js/dashboard/dash_1.js"></script>
+    <!-- datatable js -->
+    <script src="~/rtl/plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="~/rtl/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="~/rtl/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="~/rtl/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="~/rtl/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <script>
+        $('#html5-extension').DataTable({
+            dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+            buttons: {
+                buttons: [
+                    //{ extend: 'copy', className: 'btn', text: 'نسخ' },
+                    //{ extend: 'csv', className: 'btn', text: 'تنسق csv' },
+                    //{ extend: 'excel', className: 'btn', title: 'ExampleFile', text: 'اكسل' },
+                    //{ extend: 'print', className: 'btn', title: 'ExampleFile', text: 'طباعة' }
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                "sInfo": "يعرض من  _PAGE_ الي _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "بحث...",
+                "sLengthMenu": "Results :  _MENU_"
+            },
+            "stripeClasses": [],
+            "lengthMenu": [7, 10, 20, 50],
+            "pageLength": 7
+
+        });
+      
+    </script>
+    <!-- font-icons/ -->
+    <script src="~/rtl/assets/js/scrollspyNav.js"></script>
+    <script src="~/rtl/plugins/font-icons/feather/feather.min.js"></script>
+    <script src="~/rtl/plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <script src="~/rtl/plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="~/rtl/plugins/sweetalerts/custom-sweetalert.js"></script>
+    <script src="~/rtl/plugins/flatpickr/flatpickr.js"></script>
+    <script src="~/rtl/plugins/flatpickr/custom-flatpickr.js"></script>
+    <script src="~/rtl/plugins/editors/markdown/simplemde.min.js"></script>
+    <script src="~/rtl/plugins/editors/markdown/custom-markdown.js"></script>
+    <script src="~/rtl/assets/js/apps/invoice.js"></script>
+    <script>
+        function deleteRecord(id) {
+            var swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn btn-success btn-rounded',
+                cancelButtonClass: 'btn btn-danger btn-rounded mr-3',
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons({
+                title: 'هل انت متأكد؟',
+                text: "لن تتمكن من التراجع عن هذا!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'نعم احذف !',
+                cancelButtonText: 'لا قم بالالغاء !',
+                reverseButtons: true,
+                padding: '2em'
+            }).then(function(result) {
+                if (result.value) {
+                    debugger
+                    deleteConfirmed(id);
+                    swalWithBootstrapButtons(
+                        'تم الحذف !',
+                        'تم حذف السجل .',
+                        'success'
+                    );
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons(
+                        'الغاء',
+                        'تم الالغاء :)',
+                        'error'
+
+                    );
+                }
+            });
+        };
+
+        function deleteConfirmed(id) {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("DeleteConfirmed")",
+                data: {'id':id},
+                dataType: "json",
+                success: function(msg) {
+                    if (msg.success == true) {
+                        console.log("success delet");
+                    } else {
+                        console.log(msg);
+                    }
+
+                },
+                error: function(req, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        feather.replace();
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

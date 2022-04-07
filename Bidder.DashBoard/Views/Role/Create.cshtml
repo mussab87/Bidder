@@ -1,0 +1,48 @@
+﻿@using Bidder.DashBoard.Helpers
+@using Bidder.Business.Data
+@model Bidder.Data.Entities.Role
+@using Microsoft.AspNetCore.Http
+@using Bidder.Data.HelpersAttributes
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@inject Bidder.Data.Interfaces.IUnitOfWork UnitOfWork
+@{
+    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
+    int? tmpId = HttpContextAccessor.HttpContext.Session.GetInt32("UserID");
+    int userId = tmpId ?? 0;
+    var helper = new HelperMethods(UnitOfWork);
+  
+}
+<div class="widget-content widget-content-area col-12">
+    <h4>@_shardLocalizer.GetLocalizedString("CreateRole")</h4>
+    <hr/>
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label>@_shardLocalizer.GetLocalizedString("RolenameinArabic")</label>
+                <input asp-for="NameAr" class="form-control"/>
+                <span asp-validation-for="NameAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>@_shardLocalizer.GetLocalizedString("RolenameinEnglish")</label>
+                <input asp-for="NameEn" class="form-control"/>
+                <span asp-validation-for="NameEn" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group col-md-12">
+                <input type="submit" value="@_shardLocalizer.GetLocalizedString("BtnCreate")" class="btn btn-success"/>
+
+                <a asp-action="Index" class="btn btn-primary">@_shardLocalizer.GetLocalizedString("BtnBack")</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+}

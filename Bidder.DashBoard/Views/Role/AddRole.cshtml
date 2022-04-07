@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+@using Bidder.DashBoard.Helpers
+@using LoggedUser = Bidder.DashBoard.Helpers
+@model Bidder.DashBoard.ViewModels.RoleAccountViewModel
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@inject Bidder.Data.Interfaces.IUnitOfWork UnitOfWork
+@{
+    ViewBag.Title = "إضافة صلاحية";
+    var tmp = new HelperMethods(UnitOfWork);
+}
+<div class="widget-content widget-content-area col-12">
+        @_shardLocalizer.GetLocalizedString("ManageUserRole")
+        <hr />
+        @{
+            var lang = Convert.ToString(HttpContextAccessor.HttpContext.Request.Cookies["lang"]);
+            if (lang == "ar-SA")
+            {
+                <ul class="text-muted" style="list-style: none">
+                    <li style="text-align: center">@*@_shardLocalizer.GetLocalizedString("Name") :*@ <strong style="color: red">@Model.Roles.NameAr</strong></li>
+                </ul>
+            }
+            else
+            {
+                <ul class="text-muted" style="list-style: none">
+                    <li style="text-align: center">@*@_shardLocalizer.GetLocalizedString("Name") :*@ <strong style="color: red">@Model.Roles.NameEn</strong></li>
+                </ul>
+            }
+        }
+
+
+    </h4>
+    <hr />
+    @using (Html.BeginForm("SaveUserRole", "Role"))
+    {
+        <div class="form-horizontal">
+            <div class="form-group">
+
+                @Html.HiddenFor(m => m.RoleId)
+            </div>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h4>@_shardLocalizer.GetLocalizedString("RemoveUsers")</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive mb-4 mt-4">
+                        <table class="table table-hover non-hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("UserName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("EnglishName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("ArabicName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("Email")</th>
+                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var per in Model.GetRoleUser)
+                                {
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="accountIds" id="accountIds_@per.Id" value="@per.Id" checked />
+                                        </td>
+                                        <td>
+                                            @per.UserName
+                                        </td>
+                                        <td>
+                                            @per.NameInEnglish
+                                        </td>
+                                        <td>
+                                            @per.NameInArabic
+                                        </td>
+                                        <td>
+                                            @per.Email
+                                        </td>
+                                   
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-header">
+                    <h4>@_shardLocalizer.GetLocalizedString("AddUser")</h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive mb-4 mt-4">
+                        <table class="table table-hover non-hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("UserName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("EnglishName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("ArabicName")</th>
+                                    <th>@_shardLocalizer.GetLocalizedString("Email")</th>
+                        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var noR in Model.NoRoleUser)
+                                {
+                                    @if (noR != null)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="accountIds" id="accountIds_@noR.Id" value="@noR.Id" />
+                                            </td>
+                                            <td> @noR.UserName</td>
+                                            <td> @noR.NameInEnglish</td>
+                                            <td> @noR.NameInArabic</td>
+                                            <td> @noR.Email</td>
+                                       
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @Html.AntiForgeryToken()
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-success">@_shardLocalizer.GetLocalizedString("BtnSave")</button>
+            <a href="/Role/index" class="btn btn-primary">@_shardLocalizer.GetLocalizedString("BtnBack") </a>
+        </div>
+    }
+</div>

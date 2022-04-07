@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Bidder.DashBoard.Dtos.StudentDtos>
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="widget-content widget-content-area col-12">
+    <div class="table-responsive mb-4 mt-4">
+        <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        <p>رقم التسجيل</p>
+                    </th>
+                    <th>
+                        <p>إسم المتقدم</p>
+                    </th>
+                    <th>
+                        <p>الهوية الوطنية</p>
+                    </th>
+                    <th>
+                        <p>الوزن</p>
+                    </th>
+                    <th>
+                        <p>الطول</p>
+                    </th>
+                    <th>
+                        <p>مستوى الفحص الطبي</p>
+                    </th>
+
+                    <th>
+                        السلاح
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegistrationNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CandidatName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Weight)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Length)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MedicalTestLevel)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Weapon)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

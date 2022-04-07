@@ -1,0 +1,59 @@
+﻿@model Bidder.Data.Entities.Weapon
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <h2 class="font-weight-bolder">
+                <h4>إضافة سلاح</h4>
+            </h2>
+        </div>
+    </div>
+    <div class="card-body">
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="WeaponName" class="control-label">إسم السلاح</label>
+                        <input asp-for="WeaponName" class="form-control" />
+                        <span asp-validation-for="WeaponName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Length" class="control-label">الطول</label>
+                        <input asp-for="Length" class="form-control" />
+                        <span asp-validation-for="Length" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Weight" class="control-label">الوزن</label>
+                        <input asp-for="Weight" class="form-control" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MedicalTestLevel" class="control-label">
+                            مستوى الفحص الطبي
+                        </label>
+                        <input asp-for="MedicalTestLevel" class="form-control" />
+                        <span asp-validation-for="MedicalTestLevel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumberOfCandidate" class="control-label">
+                            الإحتياج
+                        </label>
+                        <input asp-for="NumberOfCandidate" class="form-control" />
+                        <span asp-validation-for="NumberOfCandidate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="@_shardLocalizer.GetLocalizedString("BtnCreate")" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-info">@_shardLocalizer.GetLocalizedString("BtnBack") </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

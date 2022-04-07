@@ -1,0 +1,78 @@
+﻿@model Bidder.Data.Entities.Permission
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            <h2 class="font-weight-bolder">
+                @_shardLocalizer.GetLocalizedString("EditPremission")
+
+            </h2>
+        </div>
+    </div>
+    <div class="card-body">
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("PermissionArabicName")</label>
+                        <input asp-for="NameAr" class="form-control" />
+                        <span asp-validation-for="NameAr" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label> @_shardLocalizer.GetLocalizedString("PermissionEnglishName")</label>
+                        <input asp-for="NameEn" class="form-control" />
+                        <span asp-validation-for="NameEn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("PermissionController")</label>
+                        <input asp-for="Controller" class="form-control" />
+                        <span asp-validation-for="Controller" class="text-danger"></span>
+                    </div>
+             
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("PermissionAction")</label>
+                        <input asp-for="Action" class="form-control" />
+                        <span asp-validation-for="Action" class="text-danger"></span>
+                    </div>    
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("IsAdmin")</label>
+                        <input type="checkbox" asp-for="IsAdmin"  />
+                        <span asp-validation-for="IsAdmin" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("IsCustomer")</label>
+                        <input  type="checkbox" asp-for="IsCustomer"  />
+                        <span asp-validation-for="IsCustomer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("IsEmployee")</label>
+                        <input  type="checkbox" asp-for="IsEmployee"  />
+                        <span asp-validation-for="IsEmployee" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>@_shardLocalizer.GetLocalizedString("IsSupplier")</label>
+                        <input  type="checkbox" asp-for="IsSupplier"  />
+                        <span asp-validation-for="IsSupplier" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-group col-md-12">
+                        <input type="submit" class="btn btn-success" value="@_shardLocalizer.GetLocalizedString("BtnEdit")">
+                        <a asp-action="Index" class="btn btn-primary">@_shardLocalizer.GetLocalizedString("BtnBack") </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

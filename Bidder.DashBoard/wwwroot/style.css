@@ -1,0 +1,55 @@
+﻿@font-face {
+    font-family: Droid;
+    src: url(/fonts/DroidKufi-Regular.ttf);
+    src: url(/fonts/DroidKufi-Bold.ttf);
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(/fonts/Ubuntu-B.ttf);
+    src: url(/fonts/Ubuntu-M.ttf);
+    src: url(/fonts/Ubuntu-R.ttf);
+}
+
+body {
+    font-family: Droid, Ubuntu;
+    color: #000 !important;
+}
+
+.table > tbody > tr > td { color: #000 !important; }
+
+.form-group label, label { color: #000 !important; }
+
+.dt-buttons .dt-button { background-color: #C2D845 !important; }
+
+.modal-content { width: 500px !important; }
+
+.btn-success {
+    background-color: #6AC07E !important;
+    border-color: #6AC07E !important;
+}
+
+#compactSidebar { background-color: #00793e !important; }
+
+.btn-warning {
+    background-color: #C2D845 !important;
+    border-color: #C2D845 !important;
+}
+
+.dt-buttons .dt-button {
+    background-color: #929497 !important;
+    border-color: #929497 !important;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] { color: #000000 !important; }
+
+.btn btn-primary {
+    color: #fff !important;
+    background-color: #5F4B9E !important;
+    border-color: #5F4B9E !important;
+}
+
+.hidden { display: none !important; }
+/*.form-control  {
+  padding:   0.65rem 35px 10px 1.25px !important;
+}*/

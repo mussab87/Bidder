@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Bidder.Data.Entities.Weapon>
+@inject Bidder.DashBoard.Resources.SharedViewLocalizer _shardLocalizer
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="widget-content widget-content-area col-12">
+    <p>
+        <a asp-action="Create" class="btn btn-success">@_shardLocalizer.GetLocalizedString("BtnCreate")</a>
+    </p>
+    <hr />
+    <div class="table-responsive mb-4 mt-4">
+        <table id="html5-extension" class="table table-hover non-hover" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        إسم السلاح
+                    </th>
+                    <th>
+                        الطول
+                    </th>
+                    <th>
+                        الوزن
+                    </th>
+                    <th>
+                        مستوى الفحص الطبي
+                    </th>
+                    <th>الإحتياج</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WeaponName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Length)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicalTestLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfCandidate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> @_shardLocalizer.GetLocalizedString("BtnEdit")</a> |
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"> @_shardLocalizer.GetLocalizedString("BtnDelete")</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

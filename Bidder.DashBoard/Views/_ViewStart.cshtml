@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var lang=Convert.ToString(HttpContextAccessor.HttpContext.Request.Cookies["lang"]);
+    if(lang == null)
+    {
+        CookieOptions option = new CookieOptions();
+        option.Expires = DateTime.Now.AddDays(20);
+        HttpContextAccessor.HttpContext.Response.Cookies.Append("lang", "ar-SA", option);
+        Layout = "~/Views/Shared/_LayoutAr.cshtml";
+    }
+    if (lang == "ar-SA")
+    {
+        Layout = "~/Views/Shared/_LayoutAr.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
